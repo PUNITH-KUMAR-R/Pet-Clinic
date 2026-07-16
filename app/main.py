@@ -223,8 +223,9 @@ def update_appointment(
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse(
-        "index.html",
-        {"request": request}
+        request=request,
+        name="index.html",
+        context={"request": request},
     )
 
 @app.get("/doctors-ui", response_class=HTMLResponse)
@@ -232,36 +233,39 @@ def doctors_page(request: Request, db: Session = Depends(get_db)):
     doctors = db.query(Doctor).all()
 
     return templates.TemplateResponse(
-        "doctors.html",
-        {
-            "request": request,
-            "doctors": doctors
-        }
-    )
+    request=request,
+    name="doctors.html",
+    context={
+        "request": request,
+        "doctors": doctors,
+    },
+)
 
 @app.get("/pets-ui", response_class=HTMLResponse)
 def pets_page(request: Request, db: Session = Depends(get_db)):
     pets = db.query(Pet).all()
 
     return templates.TemplateResponse(
-        "pets.html",
-        {
-            "request": request,
-            "pets": pets
-        }
-    )
+    request=request,
+    name="pets.html",
+    context={
+        "request": request,
+        "pets": pets,
+    },
+)
 
 @app.get("/appointments-ui", response_class=HTMLResponse)
 def appointments_page(request: Request, db: Session = Depends(get_db)):
     appointments = db.query(Appointment).all()
 
     return templates.TemplateResponse(
-        "appointments.html",
-        {
-            "request": request,
-            "appointments": appointments
-        }
-    )
+    request=request,
+    name="appointments.html",
+    context={
+        "request": request,
+        "appointments": appointments,
+    },
+)
 
 @app.post("/doctors/add")
 def add_doctor(
@@ -325,12 +329,13 @@ def edit_doctor_page(
         )
 
     return templates.TemplateResponse(
-        "edit_doctor.html",
-        {
-            "request": request,
-            "doctor": doctor
-        }
-    )
+    request=request,
+    name="edit_doctor.html",
+    context={
+        "request": request,
+        "doctor": doctor,
+    },
+)
 
 @app.post("/doctors/update/{doctor_id}")
 def update_doctor_ui(
@@ -426,12 +431,13 @@ def edit_pet_page(
         )
 
     return templates.TemplateResponse(
-        "edit_pet.html",
-        {
-            "request": request,
-            "pet": pet
-        }
-    )
+    request=request,
+    name="edit_pet.html",
+    context={
+        "request": request,
+        "pet": pet,
+    },
+)
 
 @app.post("/pets/update/{pet_id}")
 def update_pet_ui(
@@ -530,12 +536,13 @@ def edit_appointment_page(
         )
 
     return templates.TemplateResponse(
-        "edit_appointment.html",
-        {
-            "request": request,
-            "appointment": appointment
-        }
-    )
+    request=request,
+    name="edit_appointment.html",
+    context={
+        "request": request,
+        "appointment": appointment,
+    },
+)
 
 @app.post("/appointments/update/{appointment_id}")
 def update_appointment_ui(
