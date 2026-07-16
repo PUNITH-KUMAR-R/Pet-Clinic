@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Pet</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>Edit Pet</h1>
+
+<form action="/pets/update/{{ pet.id }}" method="post">
+
+    <label>Name</label><br>
+    <input type="text"
+           name="name"
+           value="{{ pet.name }}"
+           required><br><br>
+
+    <label>Species</label><br>
+    <input type="text"
+           name="species"
+           value="{{ pet.species }}"
+           required><br><br>
+
+    <label>Owner</label><br>
+    <input type="text"
+           name="owner"
+           value="{{ pet.owner }}"
+           required><br><br>
+
+    <button type="submit">
+        Update Pet
+    </button>
+
+</form>
+
+<br>
+
+<a href="/pets-ui">Back to Pets</a>
+
+</body>
+
+</html>

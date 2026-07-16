@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pets</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Pet Clinic Management System</h1>
+
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/doctors-ui">Doctors</a> |
+        <a href="/pets-ui">Pets</a> |
+        <a href="/appointments-ui">Appointments</a>
+    </nav>
+
+    <hr>
+
+    <h2>Add Pet</h2>
+
+    <form action="/pets/add" method="post">
+
+        <label>Name</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Species</label><br>
+        <input type="text" name="species" required><br><br>
+
+        <label>Owner</label><br>
+        <input type="text" name="owner" required><br><br>
+
+        <button type="submit">Add Pet</button>
+
+    </form>
+
+    <hr>
+
+    <h2>Pets List</h2>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Species</th>
+            <th>Owner</th>
+            <th>Action</th>
+        </tr>
+
+        {% for pet in pets %}
+
+        <tr>
+
+            <td>{{ pet.id }}</td>
+            <td>{{ pet.name }}</td>
+            <td>{{ pet.species }}</td>
+            <td>{{ pet.owner }}</td>
+
+            <td>
+
+                <a href="/pets/edit/{{ pet.id }}">
+                    <button type="button">Edit</button>
+                </a>
+
+                <form action="/pets/delete/{{ pet.id }}"
+                      method="post"
+                      style="display:inline;">
+
+                    <button type="submit">
+                        Delete
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+
+</html>

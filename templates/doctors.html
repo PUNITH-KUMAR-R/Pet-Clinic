@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors - Pet Clinic</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Pet Clinic Management System</h1>
+
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/doctors-ui">Doctors</a> |
+        <a href="/pets-ui">Pets</a> |
+        <a href="/appointments-ui">Appointments</a>
+    </nav>
+
+    <hr>
+
+    <h2>Add Doctor</h2>
+
+    <form action="/doctors/add" method="post">
+
+        <label>Name</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Specialization</label><br>
+        <input type="text" name="specialization" required><br><br>
+
+        <label>Availability</label><br>
+        <input type="text" name="availability" required><br><br>
+
+        <button type="submit">Add Doctor</button>
+
+    </form>
+
+    <hr>
+
+    <h2>Doctors List</h2>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Availability</th>
+            <th>Action</th>
+        </tr>
+
+        {% for doctor in doctors %}
+
+        <tr>
+
+            <td>{{ doctor.id }}</td>
+            <td>{{ doctor.name }}</td>
+            <td>{{ doctor.specialization }}</td>
+            <td>{{ doctor.availability }}</td>
+
+            <td>
+
+                <a href="/doctors/edit/{{ doctor.id }}">
+                    <button type="button">Edit</button>
+                </a>
+            
+                <form action="/doctors/delete/{{ doctor.id }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/">⬅ Back to Home</a>
+
+</div>
+
+</body>
+
+</html>

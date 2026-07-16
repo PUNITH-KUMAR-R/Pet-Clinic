@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Appointment</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>Edit Appointment</h1>
+
+<form action="/appointments/update/{{ appointment.id }}" method="post">
+
+    <label>Doctor ID</label><br>
+    <input type="number"
+           name="doctor_id"
+           value="{{ appointment.doctor_id }}"
+           required><br><br>
+
+    <label>Pet ID</label><br>
+    <input type="number"
+           name="pet_id"
+           value="{{ appointment.pet_id }}"
+           required><br><br>
+
+    <label>Date</label><br>
+    <input type="date"
+           name="date"
+           value="{{ appointment.date }}"
+           required><br><br>
+
+    <label>Time</label><br>
+    <input type="time"
+           name="time"
+           value="{{ appointment.time }}"
+           required><br><br>
+
+    <button type="submit">
+        Update Appointment
+    </button>
+
+</form>
+
+<br>
+
+<a href="/appointments-ui">Back to Appointments</a>
+
+</body>
+
+</html>

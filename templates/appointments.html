@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Appointments</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Pet Clinic Management System</h1>
+
+<nav>
+    <a href="/">Home</a> |
+    <a href="/doctors-ui">Doctors</a> |
+    <a href="/pets-ui">Pets</a> |
+    <a href="/appointments-ui">Appointments</a>
+</nav>
+
+<hr>
+
+<h2>Add Appointment</h2>
+
+<form action="/appointments/add" method="post">
+
+    <label>Doctor ID</label><br>
+    <input type="number" name="doctor_id" required><br><br>
+
+    <label>Pet ID</label><br>
+    <input type="number" name="pet_id" required><br><br>
+
+    <label>Date</label><br>
+    <input type="date" name="date" required><br><br>
+
+    <label>Time</label><br>
+    <input type="time" name="time" required><br><br>
+
+    <button type="submit">Add Appointment</button>
+
+</form>
+
+<hr>
+
+<h2>Appointments</h2>
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Doctor ID</th>
+    <th>Pet ID</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Action</th>
+</tr>
+
+{% for appointment in appointments %}
+
+<tr>
+
+    <td>{{ appointment.id }}</td>
+    <td>{{ appointment.doctor_id }}</td>
+    <td>{{ appointment.pet_id }}</td>
+    <td>{{ appointment.date }}</td>
+    <td>{{ appointment.time }}</td>
+
+    <td>
+
+        <a href="/appointments/edit/{{ appointment.id }}">
+            <button type="button">Edit</button>
+        </a>
+
+        <form action="/appointments/delete/{{ appointment.id }}"
+              method="post"
+              style="display:inline;">
+
+            <button type="submit">
+                Delete
+            </button>
+
+        </form>
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+
+</html>
