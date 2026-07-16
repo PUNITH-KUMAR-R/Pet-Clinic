@@ -569,3 +569,16 @@ def update_appointment_ui(
         status_code=303
     )
 
+import fastapi
+import starlette
+import jinja2
+import sys
+
+@app.get("/versions")
+def versions():
+    return {
+        "python": sys.version,
+        "fastapi": fastapi.__version__,
+        "starlette": starlette.__version__,
+        "jinja2": jinja2.__version__,
+    }
